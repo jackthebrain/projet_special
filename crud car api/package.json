@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "cros": "^1.0.1",
-    "express": "^4.18.2",
-    "firebase": "^9.19.1",
-    "nodemon": "^2.0.22"
-  }
-}
