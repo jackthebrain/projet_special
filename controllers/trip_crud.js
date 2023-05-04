@@ -1,7 +1,7 @@
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const trips = require('../config/config')
+const {trips} = require('../config/config')
 app.use(express.json())
 app.use(cors())
 
