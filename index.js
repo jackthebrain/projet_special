@@ -1,11 +1,27 @@
 
 const car = require ("./controllers/crud_car")
 const trip = require("./controllers/trip_crud")
+const reservation = require("./controllers/crud_reservation")
 const cors = require('cors')
 const express = require('express')
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+
+//create reservation
+
+app.post("/createReservation",reservation.createReservation);
+
+//delete reservation 
+
+app.post("/deletReservation",reservation.deletReservation);
+
+// get resercation by idtrip
+
+app.post("/getReservationById",reservation.getReservationById);
+
+// get gars
 
 app.get("/getCars",car.getCars);
 

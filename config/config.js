@@ -11,4 +11,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const cars = db.collection("cars");
 const trips = db.collection("trips");
+<<<<<<< HEAD
+const reservation = db.collection("reservation");
+module.exports = {cars,trips,reservation};
+=======
 module.exports = {cars,trips};
+>>>>>>> 499109e95af432391af91aaa50659be91abdecf7
