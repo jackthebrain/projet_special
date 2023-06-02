@@ -29,7 +29,7 @@ const getReservationById = async (req, res) => {
     const querySnapshot = await reservation.where("idTrip", "==", idTrip).get();
     const results = [];
     querySnapshot.forEach((doc) => {
-    results.push({ idTrip: doc.idTrip, ...doc.data() });
+    results.push({ id: doc.id, ...doc.data() });
     });
     res.send(results);
   }
