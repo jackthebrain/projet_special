@@ -13,6 +13,10 @@ app.use(cors())
 
 app.post("/createReservation",reservation.createReservation);
 
+//get reservation by user
+
+app.post("/getReservationByUser",reservation.getReservationByUser);
+
 //delete reservation 
 
 app.post("/deletReservation",reservation.deletReservation);

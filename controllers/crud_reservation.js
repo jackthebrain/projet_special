@@ -50,4 +50,14 @@ const getReservations = async (req, res) => {
   const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
   res.send(list);
 }
-  module.exports = { getReservationById , deletReservation, createReservation,getReservation,getReservations }
+
+const getReservationByUser = async (req, res) => {
+  const idUser = req.body.idUser;
+  const querySnapshot = await reservation.where("idUser", "==", idUser).get();
+  const results = [];
+  querySnapshot.forEach((doc) => {
+  results.push({ idUser: doc.idUser, ...doc.data() });
+  });
+  res.send(results);
+}
+  module.exports = { getReservationById , deletReservation, createReservation,getReservation,getReservations,getReservationByUser }
