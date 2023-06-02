@@ -33,4 +33,21 @@ const getReservationById = async (req, res) => {
     });
     res.send(results);
   }
-  module.exports = { getReservationById , deletReservation, createReservation }
+// get reservation by id 
+
+const getReservation = async (req, res) => {
+    const id = req.body.id
+    const docRef = reservation.doc(id)
+    const docSnapshot = await docRef.get()
+    const docData = { id: docSnapshot.id, ...docSnapshot.data() }
+    res.send(docData)
+  }
+
+// get reservations
+
+const getReservations = async (req, res) => {
+  const snapshot = await reservation.get()
+  const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+  res.send(list);
+}
+  module.exports = { getReservationById , deletReservation, createReservation,getReservation,getReservations }

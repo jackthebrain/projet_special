@@ -17,9 +17,17 @@ app.post("/createReservation",reservation.createReservation);
 
 app.post("/deletReservation",reservation.deletReservation);
 
+//get  reservations
+
+app.get("/getReservations",reservation.getReservations);
+
 // get resercation by idtrip
 
 app.post("/getReservationById",reservation.getReservationById);
+
+// get resercation by id
+
+app.post("/getReservation",reservation.getReservation);
 
 // get gars
 
