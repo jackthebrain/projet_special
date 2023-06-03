@@ -65,4 +65,17 @@ const updatedDocData = updatedDocSnapshot.data();
 res.send(updatedDocData);
 }
 
-module.exports = { getTrip, getTrips, createTrip, deleteTrip, updateTrip, places }
+// get trip by id Creator
+
+const getTripsCreated = async (req, res) => {
+  const idCreator = req.body.idCreator;
+  const querySnapshot = await trips.where("idCreator", "==", idCreator).get();
+  const results = [];
+  querySnapshot.forEach((doc) => {
+  results.push({ id: doc.id, ...doc.data() });
+  });
+  res.send(results);
+}
+
+module.exports = { getTrip, getTrips, createTrip, deleteTrip, updateTrip, places, getTripsCreated };
+

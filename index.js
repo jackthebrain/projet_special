@@ -9,6 +9,9 @@ app.use(express.json())
 app.use(cors())
 
 
+//get trips created
+
+app.post('/getTripsCreated', trip.getTripsCreated);
 //create reservation
 
 app.post("/createReservation",reservation.createReservation);
