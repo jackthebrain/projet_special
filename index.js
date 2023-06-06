@@ -11,7 +11,11 @@ app.use(cors())
 
 //get trips created
 
+app.post('/deleteReserVtaion', reservation.deleteReservationById);
+
+
 app.post('/getTripsCreated', trip.getTripsCreated);
+
 //create reservation
 
 app.post("/createReservation",reservation.createReservation);

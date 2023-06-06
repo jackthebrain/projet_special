@@ -1,7 +1,8 @@
 const cors = require('cors')
 const express = require('express')
 const app = express()
-const {trips} = require('../config/config')
+const {trips,reservation} = require('../config/config')
+const db = require('../config/config')
 app.use(express.json())
 app.use(cors())
 
@@ -77,5 +78,25 @@ const getTripsCreated = async (req, res) => {
   res.send(results);
 }
 
-module.exports = { getTrip, getTrips, createTrip, deleteTrip, updateTrip, places, getTripsCreated };
+// deleteReservationsWithTrip by id Creator
+
+const deleteReservationsWithTrip = (req, res) => {
+  const tripId = req.body.id;
+
+  // Find and remove the trip
+  const tripIndex = trips.findIndex((trip) => trip.id === tripId);
+  if (tripIndex !== -1) {
+    const deletedTrip = trips.splice(tripIndex, 1)[0];
+
+    // Find and remove reservations associated with the trip
+    const deletedReservations = reservation.filter((reservation) => reservation.idTrip === tripId);
+    reservation = reservation.filter((reservation) => reservation.idTrip !== tripId);
+
+    res.send({ msg: 'Deleted', deletedTrip, deletedReservations });
+  } else {
+    res.status(404).send({ error: 'Trip not found' });
+  }
+};
+
+module.exports = { getTrip, getTrips, createTrip, deleteTrip, updateTrip, places, getTripsCreated,deleteReservationsWithTrip };
 

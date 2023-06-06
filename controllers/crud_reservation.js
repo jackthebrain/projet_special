@@ -23,7 +23,6 @@ const deletReservation = async (req, res) => {
   
 // get reservation by idTrip
 
-
 const getReservationById = async (req, res) => {
     const idTrip = req.body.idTrip;
     const querySnapshot = await reservation.where("idTrip", "==", idTrip).get();
@@ -33,6 +32,7 @@ const getReservationById = async (req, res) => {
     });
     res.send(results);
   }
+  
 // get reservation by id 
 
 const getReservation = async (req, res) => {
@@ -60,4 +60,13 @@ const getReservationByUser = async (req, res) => {
   });
   res.send(results);
 }
-  module.exports = { getReservationById , deletReservation, createReservation,getReservation,getReservations,getReservationByUser }
+
+const deleteReservationById = async (req,res) => {
+  const idTrip = req.body.idTrip;
+  const querySnapshot = await reservation.where("idTrip", "==", idTrip).get();
+  querySnapshot.docs.map(async (doc) => {
+  await doc.ref.delete();
+  });
+  res.send("deleted");
+  }
+  module.exports = { getReservationById , deletReservation, createReservation,getReservation,getReservations,getReservationByUser,deleteReservationById }
